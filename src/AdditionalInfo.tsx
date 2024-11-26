@@ -21,6 +21,7 @@ const AdditionalInfo: React.FC = () => {
   }, [searchParams]);
 
   const handleSignup = async () => {
+    console.log('handleSignup')
     if (!token) {
       alert("토큰이 없습니다. 다시 로그인해주세요.");
       return;
