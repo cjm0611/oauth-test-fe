@@ -20,7 +20,7 @@ const AdditionalInfo: React.FC = () => {
     }
   }, [searchParams]);
 
-  const handleSignup = () => {
+  const handleSignup = async () => {
     if (!token) {
       alert("토큰이 없습니다. 다시 로그인해주세요.");
       return;
@@ -38,8 +38,9 @@ const AdditionalInfo: React.FC = () => {
 
     // 회원가입 요청
     const url = 'https://grouper-able-dingo.ngrok-free.app/api/signup';
+
     // const url = 'http://localhost:8080/api/signup';
-    fetch(url, {
+    await fetch(url, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -49,6 +50,7 @@ const AdditionalInfo: React.FC = () => {
       }),
     })
       .then((response) => {
+        console.log("response: ", response);
         if (response.ok) {
           alert("회원가입이 완료되었습니다!");
         } else {
