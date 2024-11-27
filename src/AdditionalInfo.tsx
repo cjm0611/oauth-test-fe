@@ -24,12 +24,12 @@ const AdditionalInfo: React.FC = () => {
   };
 
   useEffect(() => {
-     const signupToken = getCookie("accessToken");
+     const signupToken = getCookie("AccessToken");
      if (signupToken) {
-       console.log("accessToken: ", signupToken);
+       console.log("AccessToken: ", signupToken);
        setToken(signupToken);
        // 쿠키에서 토큰을 읽었으므로 쿠키를 삭제할 수도 있습니다.
-       document.cookie = "accessToken=; Max-Age=0; path=/additional-info";
+       document.cookie = "AccessToken=; Max-Age=0; path=/additional-info";
      } else {
        console.warn("accessToken 존재하지 않습니다.");
      }
