@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
 const AdditionalInfo: React.FC = () => {
+  console.log("AdditionalInfo");
   const [searchParams] = useSearchParams();
   const [token, setToken] = useState<string | null>(null); // 토큰 저장
   const [ageGroup, setAgeGroup] = useState(""); // 연령대 입력
@@ -25,6 +26,7 @@ const AdditionalInfo: React.FC = () => {
   };
 
   useEffect(() => {
+    console.log("useEffect");
      const signupToken = getCookie("AccessToken");
      if (signupToken) {
        console.log("AccessToken: ", signupToken);
