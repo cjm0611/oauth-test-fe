@@ -4,6 +4,9 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import AdditionalInfo from './AdditionalInfo';
 
 const App: React.FC = () => {
+
+  console.log(typeof window["flutter_inwebappview"]);
+
   const handleLogin = () => {
     const oauthUrl = "https://grouper-able-dingo.ngrok-free.app/oauth2/authorization/kakao";
     // const oauthUrl = "http://localhost:8080/oauth2/authorization/kakao";
