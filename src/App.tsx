@@ -5,7 +5,7 @@ import AdditionalInfo from './AdditionalInfo';
 
 const App: React.FC = () => {
 
-  console.log(typeof window["flutter_inwebappview"]);
+  console.log("🎉🎉🎉", typeof window["flutter_inwebappview"]);
 
   const handleLogin = () => {
     const oauthUrl = "https://grouper-able-dingo.ngrok-free.app/oauth2/authorization/kakao";
