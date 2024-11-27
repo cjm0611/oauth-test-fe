@@ -3,8 +3,9 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import AdditionalInfo from './AdditionalInfo';
 
 const App = () => {
-  console.log("🎉그냥🎉", window.flutter_inwebappview);
-  console.log("🎉🎉🎉", typeof window.flutter_inwebappview);
+  console.log("🎉그냥🎉", window.flutter_inappwebview);
+  console.log("🎉🎉🎉", typeof window.flutter_inappwebview);
+  console.log("🎉콜핸들러🎉", window.flutter_inappwebview.callHandler);
 
   const handleLogin = () => {
     const oauthUrl = "https://grouper-able-dingo.ngrok-free.app/oauth2/authorization/kakao";
