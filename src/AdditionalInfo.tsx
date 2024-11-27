@@ -12,12 +12,27 @@ const AdditionalInfo: React.FC = () => {
   const validAgeGroups = ["10", "20", "30", "40", "50", "60", "70", "80", "90", "100"];
   const validGenders = ["MALE", "FEMALE", "OTHER"];
 
-  useEffect(() => {
-    const tokenFromUrl = searchParams.get("token");
-    if (tokenFromUrl) {
-      console.log("tokenFromUrl: ", tokenFromUrl);
-      setToken(tokenFromUrl); // URL에서 토큰 추출 후 저장
+  const getCookie = (name: string): string | null => {
+    const nameEQ = name + "=";
+    const ca = document.cookie.split(';');
+    for(let i=0;i < ca.length;i++) {
+        let c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1,c.length);
+        if (c.indexOf(nameEQ) === 0) return decodeURIComponent(c.substring(nameEQ.length,c.length));
     }
+    return null;
+  };
+
+  useEffect(() => {
+     const signupToken = getCookie("accessToken");
+     if (signupToken) {
+       console.log("accessToken: ", signupToken);
+       setToken(signupToken);
+       // 쿠키에서 토큰을 읽었으므로 쿠키를 삭제할 수도 있습니다.
+       document.cookie = "accessToken=; Max-Age=0; path=/additional-info";
+     } else {
+       console.warn("accessToken 존재하지 않습니다.");
+     }
   }, [searchParams]);
 
   const handleSignup = async () => {
