@@ -33,16 +33,13 @@ const EmailLogin = () => {
                     console.log("로그인 Access Token:", accessToken);
                     console.log("로그인 Refresh Token:", refreshToken);
 
-                    // 쿠키 설정 완료 후 메인 페이지로 이동
-                    navigate("/");
+                    // // 쿠키 설정 완료 후 메인 페이지로 이동
+                    // navigate("/");
                 } else {
                     console.error("로그인 실패:", response.status);
-                    // 실패 시 에러 페이지로 이동
-                    navigate("/error");
                 }
             } catch (error) {
                 console.error("API 요청 중 오류 발생:", error);
-                navigate("/error");
             }
         };
 
