@@ -7,8 +7,11 @@ const EmailLogin = () => {
     const [searchParams] = useSearchParams();
 
     useEffect(() => {
-        const encryptedEmail = searchParams.get('email')
-        console.log("encryptedEmail: ", encryptedEmail);
+        // const encryptedEmail = searchParams.get('email')
+        // console.log("encryptedEmail: ", encryptedEmail);
+        const encryptedEmail = window.location.hash.substring(1); // '#' 이후의 값 추출
+        console.log("Encrypted Email from Fragment: ", encryptedEmail);
+
 
         // 백엔드 API 요청
         const processEmailLogin = async () => {
