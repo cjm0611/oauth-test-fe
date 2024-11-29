@@ -1,28 +1,21 @@
-import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { apiBaseUrl } from "./config";
 
 const EmailLogin = () => {
     const navigate = useNavigate();
+    const [searchParams] = useSearchParams();
 
     useEffect(() => {
-        // URL에서 프래그먼트 값 추출
-        const encryptedEmail = window.location.hash.substring(1); // '#' 이후의 값
-        if (!encryptedEmail) {
-            console.error("암호화된 이메일이 제공되지 않았습니다.");
-            // 이메일이 없으면 로그인 페이지로 이동
-            navigate("/");
-            return;
-        }
-
-        console.log("Encrypted Email:", encryptedEmail);
+        const encryptedEmail = searchParams.get('email')
+        console.log("encryptedEmail: ", encryptedEmail);
 
         // 백엔드 API 요청
         const processEmailLogin = async () => {
             try {
                 const url = `${apiBaseUrl}/api/email-login`;
                 const response = await fetch(url, {
-                    method: "GET",
+                    method: "POST",
                     credentials: 'include',
                     headers: {
                         "Content-Type": "application/json",
@@ -54,7 +47,7 @@ const EmailLogin = () => {
         };
 
         processEmailLogin();
-    }, [navigate]);
+      }, [])
 
     return (
         <div>
