@@ -25,8 +25,8 @@ const App = () => {
   console.log("🎉🎉🎉", typeof window.flutter_inappwebview);
   
   const handleLogin = () => {
-    // const oauthUrl = "https://grouper-able-dingo.ngrok-free.app/oauth2/authorization/kakao";
-    const oauthUrl = "http://localhost:8080/oauth2/authorization/kakao";
+    const oauthUrl = "https://grouper-able-dingo.ngrok-free.app/oauth2/authorization/kakao";
+    // const oauthUrl = "http://localhost:8080/oauth2/authorization/kakao";
     console.log("oauthUrl: ", oauthUrl);
     window.location.href = oauthUrl;
   };

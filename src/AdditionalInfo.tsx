@@ -37,9 +37,9 @@ const AdditionalInfo: React.FC = () => {
     setLoading(true);
 
     // 회원가입 요청
-    // const url = 'https://grouper-able-dingo.ngrok-free.app/api/signup';
+    const url = 'https://grouper-able-dingo.ngrok-free.app/api/signup';
 
-    const url = 'http://localhost:8080/api/signup';
+    // const url = 'http://localhost:8080/api/signup';
     await fetch(url, {
       method: "POST",
       credentials: 'include',
