@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
+import { apiBaseUrl } from "./config";
 
 const AdditionalInfo: React.FC = () => {
   console.log("AdditionalInfo");
@@ -37,9 +38,7 @@ const AdditionalInfo: React.FC = () => {
     setLoading(true);
 
     // 회원가입 요청
-    const url = 'https://grouper-able-dingo.ngrok-free.app/api/signup';
-
-    // const url = 'http://localhost:8080/api/signup';
+    const url = `${apiBaseUrl}/api/signup`;
     await fetch(url, {
       method: "POST",
       credentials: 'include',
@@ -55,8 +54,8 @@ const AdditionalInfo: React.FC = () => {
         const accessToken = response.headers.get("AccessToken");
         const refreshToken = response.headers.get("RefreshToken");
 
-        console.log("Access Token:", accessToken);
-        console.log("Refresh Token:", refreshToken);
+        console.log("회원가입 Access Token:", accessToken);
+        console.log("회원가입 Refresh Token:", refreshToken);
         if (response.ok) {
           alert("회원가입이 완료되었습니다!");
         } else {

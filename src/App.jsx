@@ -2,6 +2,8 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import AdditionalInfo from './AdditionalInfo';
 import { useEffect } from 'react';
+import EmailLogin from './EmailLogin';
+import { apiBaseUrl } from './config';
 
 const App = () => {
   useEffect(() => {
@@ -25,8 +27,7 @@ const App = () => {
   console.log("🎉🎉🎉", typeof window.flutter_inappwebview);
   
   const handleLogin = () => {
-    const oauthUrl = "https://grouper-able-dingo.ngrok-free.app/oauth2/authorization/kakao";
-    // const oauthUrl = "http://localhost:8080/oauth2/authorization/kakao";
+    const oauthUrl = `${apiBaseUrl}/oauth2/authorization/kakao`;
     console.log("oauthUrl: ", oauthUrl);
     window.location.href = oauthUrl;
   };
@@ -37,7 +38,8 @@ const App = () => {
         <h1>OAuth2 Login Test</h1>
         <button onClick={handleLogin}>Login with OAuth2</button>
         <Routes>
-          <Route path="/additional-info" element={<AdditionalInfo />} />
+        <Route path="/additional-info" element={<AdditionalInfo />} />
+        <Route path="/email-login" element={<EmailLogin />} />
         </Routes>
       </div>
     </Router>
