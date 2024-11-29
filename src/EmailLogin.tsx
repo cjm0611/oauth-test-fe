@@ -34,6 +34,15 @@ const EmailLogin = () => {
                     console.log("로그인 Access Token:", accessToken);
                     console.log("로그인 Refresh Token:", refreshToken);
 
+                    // TO DO - 분기 처리 필요
+                    // if (window.flutter_inappwebview ! = undefined) {
+                        //   // event handler 호출
+                        // }
+                        // else { // 웹
+                                // 토큰과 함께
+                        //     // 회원탈퇴 버튼 페이지로 redirect
+                        // }
+
                     // // 쿠키 설정 완료 후 메인 페이지로 이동
                     // navigate("/");
                 } else {

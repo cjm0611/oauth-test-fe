@@ -56,6 +56,15 @@ const AdditionalInfo: React.FC = () => {
 
         console.log("회원가입 Access Token:", accessToken);
         console.log("회원가입 Refresh Token:", refreshToken);
+
+
+        // TO DO - 분기 처리 필요
+        // if (window.flutter_inappwebview ! = undefined) {
+        //   // event handler 호출
+        // } else {
+        //   앱이 아닌 곳에서 회원가입 시도했으므로  에러 처리
+        // }
+
         if (response.ok) {
           alert("회원가입이 완료되었습니다!");
         } else {
