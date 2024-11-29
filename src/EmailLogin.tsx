@@ -24,8 +24,6 @@ const EmailLogin = () => {
                 });
 
                 if (response.ok) {
-                    const data = await response.json();
-                    console.log("로그인 성공:", data);
                     // 응답 헤더에서 토큰 추출
                     const accessToken = response.headers.get("AccessToken");
                     const refreshToken = response.headers.get("RefreshToken");
