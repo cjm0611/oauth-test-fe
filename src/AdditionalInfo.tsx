@@ -13,30 +13,11 @@ const AdditionalInfo: React.FC = () => {
   const validAgeGroups = ["10", "20", "30", "40", "50", "60", "70", "80", "90", "100"];
   const validGenders = ["MALE", "FEMALE", "OTHER"];
 
-  const getCookie = (name: string): string | null => {
-    const nameEQ = name + "=";
-    const ca = document.cookie.split(';');
-    for(let i=0;i < ca.length;i++) {
-        let c = ca[i];
-        console.log('c: ', c);
-        while (c.charAt(0)==' ') c = c.substring(1,c.length);
-        if (c.indexOf(nameEQ) === 0) return decodeURIComponent(c.substring(nameEQ.length,c.length));
-    }
-    return null;
-  };
-
   useEffect(() => {
-    console.log("useEffect");
-     const signupToken = getCookie("AccessToken");
-     if (signupToken) {
-       console.log("AccessToken: ", signupToken);
-       setToken(signupToken);
-       // 쿠키에서 토큰을 읽었으므로 쿠키를 삭제할 수도 있습니다.
-       document.cookie = "AccessToken=; Max-Age=0; path=/additional-info";
-     } else {
-       console.warn("accessToken 존재하지 않습니다.");
-     }
-  }, [searchParams]);
+    const paramValue = searchParams.get('token')
+    console.log("token: ", paramValue);
+    setToken(paramValue);
+  }, [])
 
   const handleSignup = async () => {
     console.log('handleSignup')
@@ -56,20 +37,26 @@ const AdditionalInfo: React.FC = () => {
     setLoading(true);
 
     // 회원가입 요청
-    const url = 'https://grouper-able-dingo.ngrok-free.app/api/signup';
+    // const url = 'https://grouper-able-dingo.ngrok-free.app/api/signup';
 
-    // const url = 'http://localhost:8080/api/signup';
+    const url = 'http://localhost:8080/api/signup';
     await fetch(url, {
       method: "POST",
+      credentials: 'include',
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        token, // 토큰과 함께 전달
+        token, // 회원가입용 토큰 함께 전달
         ageGroup,
         gender,
       }),
     })
       .then((response) => {
-        console.log("response: ", response);
+        // 응답 헤더에서 토큰 추출
+        const accessToken = response.headers.get("AccessToken");
+        const refreshToken = response.headers.get("RefreshToken");
+
+        console.log("Access Token:", accessToken);
+        console.log("Refresh Token:", refreshToken);
         if (response.ok) {
           alert("회원가입이 완료되었습니다!");
         } else {
